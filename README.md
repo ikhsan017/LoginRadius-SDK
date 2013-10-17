@@ -26,6 +26,7 @@ Steps to call the library:
 **Sample code for authentication and get basic profile data**
 
 **PHP**
+
     session_start();
     require_once __DIR__.'/../vendor/autoload.php';
     use LoginRadius\LoginRadius;
@@ -54,12 +55,14 @@ LoginRaidus Contacts API
 You can use this API to fetch contacts from users social networks/email clients - Facebook, Twitter, LinkedIn, Google, Yahoo.
 
 **PHP**
+
     $loginRadius->contacts->getContacts();
     
 LoginRadius Status API
 ---
 
 **PHP**
+
 	//post status
     $response = $loginRadius->status->postStatus(array(
 		'to' => '',
@@ -89,6 +92,7 @@ LoginRadius Posts API
 You can use this API to get posts from users social networks - Facebook, Twitter, LinkedIn
 
 **PHP**
+
     //get posts
 	$posts = $loginRadius->posts->getPosts();
 	
@@ -98,6 +102,7 @@ Get Twitter Mentions
 You can use this API to get mentions from users social network - Twitter.
 
 **PHP**
+
     $mentions = $loginRadius->mentions->getMentions();
     
 Facebook Groups
@@ -105,6 +110,7 @@ Facebook Groups
 You can use this API to get groups from users social network - Facebook.
 
 **PHP**
+
     $groups = $loginRadius->groups->getGroups();
     
 Get LinkedIn follow companies
@@ -112,6 +118,7 @@ Get LinkedIn follow companies
 You can use this API to get followed companies list from users social network - LinkedIn.
 
 **PHP**
+
     $companies = $loginRadius->company->getCompany();
     
 LoginRadius direct message API
@@ -119,11 +126,12 @@ LoginRadius direct message API
 You can use this API to send direct message.
 
 **PHP**
+
 	$response = $loginRadius->message->sendMessage($to,$subject,$message);
 	if($response === true){
-    	echo 'Message sent successfully.';
+    		echo 'Message sent successfully.';
 	}elseif(isset($response->errormessage)){
-    	echo $response->errormessage;
+    		echo $response->errormessage;
 	}else{
-    	echo 'Error in sending message.';
+    		echo 'Error in sending message.';
 	}
