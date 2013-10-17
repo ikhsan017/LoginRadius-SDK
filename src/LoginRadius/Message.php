@@ -1,4 +1,5 @@
 <?php
+namespace LoginRadius;
 /**
  * Class to send direct message to user's contacts(LinkedIn)/followers(twitter).
  *
@@ -7,14 +8,14 @@
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class LoginRadiusMessage extends LoginRadius{
+class Message extends LoginRadius{
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $Secret LoginRadius API Secret.
+	 * @param string $secret LoginRadius API Secret.
 	 */ 
-	function __construct($Secret){
-		parent::__construct($Secret);
+	function __construct($secret, $token){
+		parent::__construct($secret, $token);
 	}
 	
     /**
@@ -26,14 +27,14 @@ class LoginRadiusMessage extends LoginRadius{
 	 *
 	 * @return bool - true on success, false otherwise.
 	 */ 
-	public function loginradius_send_message($to,$subject,$message){
-		$Url = 'https://hub.loginradius.com/directmessage/'.  $this->LRSecret .'/'.$this->LRToken.'?'.http_build_query(array(
+	public function sendMessage($to,$subject,$message){
+		$url = $this->loginRadiusUrl.'directmessage/'.  $this->secret .'/'.$this->token.'?'.http_build_query(array(
 			'sendto' => $to,
 			'subject' => $subject,
 			'message' => $message
 		));
-		$Response = $this->loginradius_call_api($Url);
-		return json_decode($Response);
+		$response = $this->callApi($url);
+		return json_decode($response);
 	}
 }
 ?>

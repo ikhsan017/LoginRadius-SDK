@@ -1,4 +1,5 @@
 <?php
+namespace LoginRadius;
 /**
  * Class to get companies followed by user from LinkedIn ID provider.
  *
@@ -7,14 +8,14 @@
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class LoginRadiusCompany extends LoginRadius{
+class Company extends LoginRadius{
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $Secret LoginRadius API Secret.
+	 * @param string $secret LoginRadius API secret.
 	 */ 
-	function __construct($Secret){
-		parent::__construct($Secret);
+	function __construct($secret, $token){
+		parent::__construct($secret, $token);
 	}
 	
     /**
@@ -22,10 +23,10 @@ class LoginRadiusCompany extends LoginRadius{
 	 * 
 	 * @return array Followed companies' information.
 	 */ 
-	public function loginradius_get_company(){
-		$Url = "https://hub.loginradius.com/GetCompany/". $this->LRSecret ."/". $this->LRToken;
-		$Response = $this->loginradius_call_api($Url);
-		return json_decode($Response);
+	public function getCompany(){
+		$url = $this->loginRadiusUrl.'GetCompany/'. $this->secret .'/'. $this->token;
+		$response = $this->callApi($url);
+		return json_decode($response);
 	}
 }
 ?>

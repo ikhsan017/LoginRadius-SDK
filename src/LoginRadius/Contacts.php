@@ -1,4 +1,5 @@
 <?php
+namespace LoginRadius;
 /**
  * Class to get user's contacts/friends/connections from social ID providers.
  *
@@ -7,14 +8,14 @@
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class LoginRadiusContacts extends LoginRadius{
+class Contacts extends LoginRadius{
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $Secret LoginRadius API Secret.
+	 * @param string $secret LoginRadius API secret.
 	 */ 
-	function __construct($Secret){
-		parent::__construct($Secret);
+	function __construct($secret, $token){
+		parent::__construct($secret, $token);
 	}
 	
     /**
@@ -22,10 +23,10 @@ class LoginRadiusContacts extends LoginRadius{
 	 *
 	 * @return array User's contacts information.
 	 */ 
-	public function loginradius_get_contacts(){
-		$Url = "https://hub.loginradius.com/contacts/". $this->LRSecret ."/".$this->LRToken;
-		$Response = $this->loginradius_call_api($Url);
-		return json_decode($Response);
+	public function getContacts(){
+		$url = $this->loginRadiusUrl.'contacts/'. $this->secret .'/'.$this->token;
+		$response = $this->callApi($url);
+		return json_decode($response);
 	}
 }
 ?>

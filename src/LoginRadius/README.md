@@ -1,4 +1,4 @@
-LoginRadius library for PHP
+Fork of LoginRadius library for PHP
 =====
 PHP SDK for the LoginRadius API. Get social authentication, user profile data and send messages using many social network and email clients such as Facebook, Google, Twitter, Yahoo, LinkedIn, etc.
 
