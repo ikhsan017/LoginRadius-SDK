@@ -76,9 +76,7 @@ class LoginRadius{
      * @return string - data fetched from the LoginRadius API.
      */
     protected function callApi( $validateUrl ) {
-        echo 'call to api url: '.$validateUrl.'<br />';
         if ( in_array( 'curl', get_loaded_extensions() ) ) {
-            //echo 'use curl';
             $curl_handle = curl_init();
             curl_setopt( $curl_handle, CURLOPT_URL, $validateUrl );
             curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 5 );
@@ -100,7 +98,6 @@ class LoginRadius{
                 curl_close( $ch );
             }
         }else {
-            //echo 'use file get content';
             $jsonResponse = file_get_contents( $validateUrl );
         }
         return $jsonResponse;
