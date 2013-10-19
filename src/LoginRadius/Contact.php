@@ -26,7 +26,7 @@ class Contact{
 	 */ 
 	public function getContacts(){
 		$url = $this->loginRadius->getApiUrl('contacts');
-		$response = $this->callApi($url);
+		$response = $this->loginRadius->callApi($url);
 		return json_decode($response);
 	}
 }

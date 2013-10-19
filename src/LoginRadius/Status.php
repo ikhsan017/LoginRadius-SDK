@@ -68,7 +68,7 @@ class Status{
 	 */ 
 	public function getMentions(){
 		$url = $this->loginRadius->getApiUrl('status/mentions');
-		$response = $this->callApi($url);
+		$response = $this->loginRadius->callApi($url);
 		return json_decode($response);
 	}
 }

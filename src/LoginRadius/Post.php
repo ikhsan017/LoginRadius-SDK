@@ -26,7 +26,7 @@ class Post extends LoginRadius{
 	 */
 	public function getPosts(){
 		$url = $this->loginRadius->getApiUrl('GetPosts');
-		$response = $this->callApi($url);
+		$response = $this->loginRadius->callApi($url);
 		return json_decode($response);
 	}
 }

@@ -26,7 +26,7 @@ class Event{
 	 */ 
 	public function getEvents(){
 		$url = $this->loginRadius->getApiUrl('GetEvents');
-		$response = $this->callApi($url);
+		$response = $this->loginRadius->callApi($url);
 		return json_decode($response);
 	}
 }

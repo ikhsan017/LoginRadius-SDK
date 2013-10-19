@@ -35,7 +35,7 @@ class Message{
 			'message' => $message
 		);
 		$url = $this->loginRadius->getApiUrl('directmessage', $message);
-		$response = $this->callApi($url);
+		$response = $this->loginRadius->callApi($url);
 		return json_decode($response);
 	}
 }

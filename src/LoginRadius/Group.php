@@ -26,7 +26,7 @@ class Group{
 	 */ 
 	public function getGroups(){
 		$url = $this->loginRadius->getApiUrl('GetGroups');
-		$response = $this->callApi($url);
+		$response = $this->loginRadius->callApi($url);
 		return json_decode($response);
 	}
 }
