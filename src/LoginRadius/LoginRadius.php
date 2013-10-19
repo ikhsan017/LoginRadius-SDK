@@ -75,7 +75,7 @@ class LoginRadius{
      * @return string       - url for api call
      */
     public function getApiUrl($path, $data = array()){
-        $url = $this->loginRadius->loginRadiusUrl.$path.'/'. $this->secret .'/'. $this->token;
+        $url = $this->loginRadiusUrl.$path.'/'. $this->secret .'/'. $this->token;
 
         if($data){
             $url.= '?' . http_build_query($data);
