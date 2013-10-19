@@ -13,8 +13,8 @@ namespace LoginRadius;
  *
  */
 class LoginRadius{
-    public $isAuthenticated;
-    protected $token, $secret, $loginRadiusUrl;
+    public $isAuthenticated, $loginRadiusUrl;
+    protected $token, $secret;
 
     /**
      * Constructor - It validates LoginRadius API Secret and Session Token. If valid, assigns them to class members; else prints error message.
@@ -69,6 +69,22 @@ class LoginRadius{
     }
 
     /**
+     * generate a url for api call
+     * @param  string $path - path relative to login radius url
+     * @param  array  $data - additional data (for sending message or post status)
+     * @return string       - url for api call
+     */
+    public function getApiUrl($path, $data = array()){
+        $url = $this->loginRadius->loginRadiusUrl.$path.'/'. $this->secret .'/'. $this->token;
+
+        if($data){
+            $url.= '?' . http_build_query($data);
+        }
+
+        return $url;
+    }
+
+    /**
      * This function is use to fetch data from the LoginRadius API URL.
      *
      * @param string  $validateUrl - Target URL to fetch data from.
@@ -103,10 +119,15 @@ class LoginRadius{
         return $jsonResponse;
     }
 
+    /**
+     * get instance of specific loginRadius resource
+     * @param  string $className - login radius class (status, company, mentions, etc)
+     * @return object            - object instance of $className
+     */
     public function __get($className){
         $className = 'LoginRadius\\'.ucfirst($className);
         if(class_exists($className)){
-            return new $className($this->secret, $this->token);
+            return new $className($this);
         }else{
             throw new Exception\InvalidClassException("Class '$className' does not exist in LoginRadius SDK");
         }

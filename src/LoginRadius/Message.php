@@ -8,14 +8,15 @@ namespace LoginRadius;
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class Message extends LoginRadius{
+class Message{
+	private $loginRadius;
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $secret LoginRadius API Secret.
+	 * @param string $loginRadius LoginRadius Object
 	 */ 
-	function __construct($secret, $token){
-		parent::__construct($secret, $token);
+	function __construct(LoginRadius $loginRadius){
+		$this->loginRadius = $loginRadius;
 	}
 	
     /**
@@ -28,11 +29,12 @@ class Message extends LoginRadius{
 	 * @return bool - true on success, false otherwise.
 	 */ 
 	public function sendMessage($to,$subject,$message){
-		$url = $this->loginRadiusUrl.'directmessage/'.  $this->secret .'/'.$this->token.'?'.http_build_query(array(
-			'sendto' => $to,
+		$message = array(
+			'sendto'  => $to,
 			'subject' => $subject,
 			'message' => $message
-		));
+		);
+		$url = $this->loginRadius->getApiUrl('directmessage', $message);
 		$response = $this->callApi($url);
 		return json_decode($response);
 	}

@@ -8,14 +8,15 @@ namespace LoginRadius;
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class Events extends LoginRadius{
+class Event{
+	private $loginRadius;
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $secret LoginRadius API secret.
+	 * @param string $loginRadius LoginRadius Object
 	 */ 
-	function __construct($secret, $token){
-		parent::__construct($secret, $token);
+	function __construct(LoginRadius $loginRadius){
+		$this->loginRadius = $loginRadius;
 	}
 	
     /**
@@ -24,7 +25,7 @@ class Events extends LoginRadius{
 	 * @return array User's facebook events information.
 	 */ 
 	public function getEvents(){
-		$url = $this->loginRadiusUrl.'GetEvents/'. $this->secret .'/'.$this->token;
+		$url = $this->loginRadius->getApiUrl('GetEvents');
 		$response = $this->callApi($url);
 		return json_decode($response);
 	}

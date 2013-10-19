@@ -8,14 +8,15 @@ namespace LoginRadius;
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class Company extends LoginRadius{
+class Company{
+	private $loginRadius;
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $secret LoginRadius API secret.
+	 * @param string $loginRadius LoginRadius Object
 	 */ 
-	function __construct($secret, $token){
-		parent::__construct($secret, $token);
+	function __construct(LoginRadius $loginRadius){
+		$this->loginRadius = $loginRadius;
 	}
 	
     /**
@@ -24,8 +25,8 @@ class Company extends LoginRadius{
 	 * @return array Followed companies' information.
 	 */ 
 	public function getCompany(){
-		$url = $this->loginRadiusUrl.'GetCompany/'. $this->secret .'/'. $this->token;
-		$response = $this->callApi($url);
+		$url = $this->loginRadius->getApiUrl('GetCompany');
+		$response = $this->loginRadius->callApi($url);
 		return json_decode($response);
 	}
 }

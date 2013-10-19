@@ -8,14 +8,15 @@ namespace LoginRadius;
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class Contacts extends LoginRadius{
+class Contact{
+	private $loginRadius;
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $secret LoginRadius API secret.
+	 * @param string $loginRadius LoginRadius Object
 	 */ 
-	function __construct($secret, $token){
-		parent::__construct($secret, $token);
+	function __construct(LoginRadius $loginRadius){
+		$this->loginRadius = $loginRadius;
 	}
 	
     /**
@@ -24,7 +25,7 @@ class Contacts extends LoginRadius{
 	 * @return array User's contacts information.
 	 */ 
 	public function getContacts(){
-		$url = $this->loginRadiusUrl.'contacts/'. $this->secret .'/'.$this->token;
+		$url = $this->loginRadius->getApiUrl('contacts');
 		$response = $this->callApi($url);
 		return json_decode($response);
 	}

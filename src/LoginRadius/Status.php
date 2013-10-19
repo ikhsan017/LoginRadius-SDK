@@ -8,14 +8,15 @@ namespace LoginRadius;
  * This file is part of the LoginRadius SDK package.
  *
  */ 
-class Status extends LoginRadius{
+class Status{
+	private $loginRadius;
 	/**
 	 * Constructor. Calls parent class constructor.
 	 * 
-	 * @param string $secret LoginRadius API Secret.
+	 * @param string $loginRadius LoginRadius Object
 	 */ 
-	function __construct($secret, $token){
-		parent::__construct($secret, $token);
+	function __construct(LoginRadius $loginRadius){
+		$this->loginRadius = $loginRadius;
 	}
 	
     /**
@@ -24,7 +25,7 @@ class Status extends LoginRadius{
 	 * @return array User's facebook status information.
 	 */ 
 	public function getStatus(){
-		$url = $this->loginRadiusUrl.'status/get/'. $this->secret .'/'. $this->token;
+		$url = $this->loginRadius->getApiUrl('status/get');
 		$response = $this->callApi($url);
 		return json_decode($response);
 	}
@@ -55,7 +56,18 @@ class Status extends LoginRadius{
 
 		$status = array_merge($defaultStatus, $newStatus);
 
-		$url = $this->loginRadiusUrl.'status/update/' . $this->secret . '/' . $this->token . '?' . http_build_query($status);
+		$url = $this->loginRadius->getApiUrl('status/update', $status);
+		$response = $this->callApi($url);
+		return json_decode($response);
+	}
+	
+    /**
+	 * Get user's twitter mentions.
+	 * 
+	 * @return array User's twitter mentions.
+	 */ 
+	public function getMentions(){
+		$url = $this->loginRadius->getApiUrl('status/mentions');
 		$response = $this->callApi($url);
 		return json_decode($response);
 	}
