@@ -39,17 +39,19 @@ Steps to call the library:
     }else{
         $_SESSION['token'] = isset($_SESSION['token']) ? $_SESSION['token'] : '';
     }
+
+    $token = $_SESSION['token'];
     
-    $loginRadius = new LoginRadius($secret, $_SESSION['token']);
+    $loginRadius = new LoginRadius($secret, $token);
     $userData = $loginRadius->getData();
     
-Advance features(for Paid customers only)
+Advance features (for Paid customers only)
 ===
 
 > LoginRadius generate a unique session token, when user logs in with
 > any of social network. The lifetime of LoginRadius token is 15 mins, get/Save this Token to call this API.
 
-LoginRaidus Contacts API
+LoginRadius Contacts API
 -----
 
 You can use this API to fetch contacts from users social networks/email clients - Facebook, Twitter, LinkedIn, Google, Yahoo.
