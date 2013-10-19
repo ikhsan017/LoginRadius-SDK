@@ -58,7 +58,7 @@ You can use this API to fetch contacts from users social networks/email clients 
 
 **PHP**
 
-    $loginRadius->contacts->getContacts();
+    $loginRadius->contact->getContacts();
     
 LoginRadius Status API
 ---
@@ -96,7 +96,7 @@ You can use this API to get posts from users social networks - Facebook, Twitter
 **PHP**
 
     //get posts
-	$posts = $loginRadius->posts->getPosts();
+	$posts = $loginRadius->post->getPosts();
 	
 Get Twitter Mentions
 --
@@ -105,7 +105,7 @@ You can use this API to get mentions from users social network - Twitter.
 
 **PHP**
 
-    $mentions = $loginRadius->mentions->getMentions();
+    $mentions = $loginRadius->status->getMentions();
     
 Facebook Groups
 --
@@ -113,7 +113,7 @@ You can use this API to get groups from users social network - Facebook.
 
 **PHP**
 
-    $groups = $loginRadius->groups->getGroups();
+    $groups = $loginRadius->group->getGroups();
     
 Get LinkedIn follow companies
 --
