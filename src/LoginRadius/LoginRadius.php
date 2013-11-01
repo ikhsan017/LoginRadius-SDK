@@ -133,5 +133,15 @@ class LoginRadius{
             throw new Exception\InvalidClassException("Class '$className' does not exist in LoginRadius SDK");
         }
     }
+
+
+    /**
+     * get instance of specific loginRadius resource
+     * @param  string $className - login radius class (status, company, mentions, etc)
+     * @return object            - object instance of $className
+     */
+    public function __call($className, $arguments){
+        return $this->__get($className);
+    }
 }
 ?>
