@@ -21,7 +21,7 @@ class LoginRadius{
      *
      * @param string  $secret LoginRadius API Secret.
      */
-    public function __construct( $secret, $token ) {
+    public function authenticate( $secret, $token ) {
         $this->loginRadiusUrl = 'https://hub.loginradius.com/';
 
         if ( !isset( $token ) ) {
@@ -36,6 +36,7 @@ class LoginRadius{
         }else {
             $this->secret = $secret;
             $this->token = $token;
+            return true;
         }
     }
 
